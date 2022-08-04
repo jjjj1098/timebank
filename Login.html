@@ -3,21 +3,60 @@
 <title>Login</title>
 
 	<title>Login</title>
-  <link href="Login.css?after" rel="stylesheet" type="text/css" />
+  <link href="css/Login.css" rel="stylesheet" type="text/css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Freelancer - Start Bootstrap Theme</title>
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <!-- Font Awesome icons (free version)-->
+  <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+  <!-- Google fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link href="css/styles.css" rel="stylesheet" />
+
 
 </head>
  
 <body>
+
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">TIME BANK</a>
+        <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">List</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="map.html">MAP</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">HELP</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="Login.html">Login</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="Login.html">Logout</a></li>
+                
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
   <div class="copyright-wrap">
     <span>	<img src="assets/img/time bank ikon.png.jpg"></span>
   </div>
-
-  <div class="content">
-    <span>Hello CSS!</span>
+  
+  <div class="kakaologin">
+    <a href="javascript:kakaoLogin();"> <button type="button"> <img src="assets/img/kakao_login.png"alt=""></button></a>
   </div>
-   <a href="javascript:kakaoLogin();"><img src="assets/img/kakao_login.png" alt="카카오계정 로그인" style="height: 100px;"/></a>
-   <a href="javascript:kakaoLogout();"><img src="assets/img/kakao_login.png" alt="카카오계정 로그아웃" style="height: 100px;"/></a>
-
+  <div class="kakaologout">
+    <a href="javascript:kakaoLogout();"><button type="button"> <img src="assets/img/kakao_login.png"alt=""></button></a>
+  </div>
+   
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
         window.Kakao.init('8deae424850aec182cc73295702e0502');
