@@ -1,4 +1,13 @@
-.bg-img {
-    background-color: yellow;
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/1280px-HTML5_logo_and_wordmark.svg.png");
-  }
+.copyright-wrap{
+	position: absolute;
+	bottom: 300px;
+	left: 350px;
+}
+.copyright-wrap span img{
+	width: 280px;
+	height: 280px;
+}
+
+.content {
+    background-color: orange;
+}
