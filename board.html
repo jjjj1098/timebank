@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css\index.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu&family=Gamja+Flower&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="wrap">
+        <div class="outerbox" >
+            <div class="innerbox">
+                <h2 class="main">HELP LIST</h2>
+                <div class="mainbox">
+                    <table id="table1">
+                        <tr id ="fields" class="tb">
+                            <td class="td0">
+                                <span>All</span>
+                                <span><input name="chk" type="checkbox" onclick="checkAll(this)"></span>
+                                
+                            </td>
+                            <td class="td1">번호</td>
+                            <td class="td2">제목</td>
+                            <td class="td3">작성자</td>
+                            <td class="td4">작성 날짜</td>
+                            <td class="td5">조회수</td>
+                        </tr>
+                        <tr class="tb">
+                            <td class="td0"><input  name="chk" type="checkbox" ></td>
+                            <td class="td1"></td>
+                            <td class="td2" id="aa"><a href="/view?idx={{item.idx}}"></a></td>
+                            <td class="td3"></td>
+                            <td class="td4"></td>
+                            <td class="td5"></td>
+                        </tr>
+                    </table>
+                    <div class="btnbox">
+                        <a href="/"><button class="btn">돌아가기</button></a>
+                        <a href="write.html"><button class="btn">도움 요청하기</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        let check = false;
+        // function checkAll(){
+        //     let chk = document.getElementsByName("chk[]");
+        //     console.log(chk);
+        //     if(check==false){
+        //         check=true;
+        //         for(let i=0; i<chk.length; i++){
+        //             chk[i].checked=true;
+        //         }
+        //     }else{
+        //         check=false;
+        //         for(let i=0; i<chk.length; i++){
+        //             chi[i].checked=false;
+        //         }
+        //     }
+        // }
+
+        function checkAll(checkAll){
+            let checkboxes=document.getElementsByName("chk");
+            console.log(checkboxes);
+            checkboxes.forEach((checkbox)=>{
+                checkbox.checked=checkAll.checked;
+            })
+        }
+    
+    </script>
+</body>
+</html>

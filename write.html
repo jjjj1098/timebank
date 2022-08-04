@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css\index.css">
+    <script type="text/javascript">
+        function val (){
+        var title_tx = document.getElementById("title_tx");
+        var name_tx = document.getElementById("name_tx");
+        var age_tx = document.getElementById("age_tx");
+        var gender_tx = document.getElementById("gender_tx");
+        var content_tx = document.getElementById("content_tx");
+
+        if(title_tx.value==""){
+            alert("제목을 입력해주세요");
+            event.preventDefault();
+        } else if(name_tx.value==""){
+            alert("이름을 입력해주세요");
+            event.preventDefault();
+        } else if(age_tx.value==""){
+            alert("나이를 입력해주세요");
+            event.preventDefault();
+        } else if(gender_tx.value==""){
+            alert("성별을 입력해주세요");
+            event.preventDefault();
+        } else if(content_tx.value==""){
+            alert("내용을 입력해주세요");
+            event.preventDefault();
+        }
+    }
+    function enter(){
+        if(window.event.keyCode ==13){
+            alert("d");
+        document.getElementsByName("content").innerHTML+="<br/>";
+    }
+    }
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="outerbox" >
+            <div class="innerbox">
+                <h2 class="main"> 도움 요청하기</h2>
+                <form method="post"  action="/writedone">
+                    <button type=submit name = "name" disabled onclick="enter()"; style="display:none;"></button> 
+                    <div class="mainbox">
+                        <div class="subbox">
+                            <div class="subsubbox">
+                                <span class="tit">제목 :</span>
+                            </div>
+                            <input id="stitle_tx" class ="txbox" type="text" name="title"> 
+
+                        </div>
+                        <div class="wribox">
+                                <div class="subsubbox">
+                            <span class="wri">작성자 :</span>
+                                </div>
+                            <input id="name_tx" class = "txbox" type="text" name="name">
+                            <br/>
+                        </div>
+                        <div class="wribox">
+                                <div class="subsubbox">
+                            <span class="age">나이 :</span>
+                                </div>
+                            <input id="age_tx" class = "txbox" type="text" name="age">
+                        <br/>
+                        </div>
+                        <div class="wribox">
+                                <div class="subsubbox">
+                            <span class="gen">성별 :</span>
+                                </div>
+                            <input id="gender_tx" class = "txbox" type="text" name="gender">
+                        <br/>
+                        </div>
+                        <div class="d">
+                            <div class="subsubbox">
+                                <span class="con">내용 :</span>
+                            </div>
+                            <input id="content_tx" onckeyup="enter()" class = "conbox" type="textbox" name="content"> 
+                                    
+                        </div>
+                    </div>
+
+                    <div class="btnbox">       
+                        <a href="board.html"><button class="btn">돌아가기</button></a>
+                        <input class ="btn" type="submit" value="글작성" onclick="val()">
+                    </div> 
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

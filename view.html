@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css\index.css">
+</head>
+<body>
+    <div class="wrap">
+        <div class="outerbox" >
+            <div class="innerbox">
+
+                    <h2 class="main">도움 요청서</h2>
+                    <div class="mainbox1">
+                            <div class="subbox">
+                                <div class="subsubbox">
+                                    <span class="sub">글 번호 :</span>
+                                </div>
+                                <input class ="txbox" type="text" name="subject" disabled value="{{help_db.idx}}"> 
+    
+                            </div>
+                            <div class="subbox">
+                                <div class="subsubbox">
+                                    <span class="tit">제목 :</span>
+                                </div>
+                                <input class ="txbox" type="text" name="title"  disabled  value="{{help_db.title}}"> 
+    
+                            </div>
+                            <div class="wribox">
+                                    <div class="subsubbox">
+                                <span class="wri">작성자 :</span>
+                                    </div>
+                                <input class = "txbox" type="text" name="name"  disabled  value="{{help_db.name}}">
+                                <br/>
+                            </div>
+                            <div class="wribox">
+                                    <div class="subsubbox">
+                                <span class="age">나이 :</span>
+                                    </div>
+                                <input class = "txbox" type="text" name="age" disabled  value="{{help_db.age}}">
+                                <br/>
+                            </div>
+                            <div class="wribox">
+                                    <div class="subsubbox">
+                                <span class="gen">성별 :</span>
+                                    </div>
+                                <input class = "txbox" type="text" name="gender" disabled  value="{{help_db.gender}}">
+                                <br/>
+                            </div>
+                            <div class="d">
+                                <div class="subsubbox">
+                                    <span class="con">내용 :</span>
+                                </div>
+                                <input class = "conbox" type="text"   disabled  name="content" value="{{help_db.content}} ">
+                                   
+                            </div>
+                    </div>
+
+                <div class="btnbox3">   
+                    <a href="board.html"><button class="btn">뒤로가기</button></a>
+                    <a href="/modify?idx={{view_db.idx}}"><button class="btn">수정하기</button></a>
+                    <a href="/delete?idx={{view_db.idx}}"><button class="btn">삭제하기</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
