@@ -50,27 +50,26 @@ app.get('/list',(request,response)=>{ //methos가 get일 때, uri값이 list일 
 })
 })
 
-app.get('writedone.html',function(request,response){
-  var name=request.body.name;
-  var age=request.body.age;
-  var gender=request.body.gender;
-  var title=request.body.title;
-  var content=request.body.content;
+app.post('/writedone',function(request,response){
+    var name=request.body.name;
+    var age=request.body.age;
+    var gender=request.body.gender;
+    var title=request.body.title;
+    var content=request.body.content;
   
-  var sql = "INSERT INTO HELP (name, age, gender,title, content,today) VALUES (?,?,?,?,?,?)";
-  var params = [name, age, gender, title, content, now()];
-  connection.query(sql,params,function(err){
-      if(error){
+    var sql = "INSERT INTO HELP (name, age, gender,title, content,today) VALUES (?,?,?,?,?,?)";
+    var params = [name, age, gender, title, content, now()];
+    connection.query(sql,params,function(err){
+        if(error){
           console.log(error);
-      }else{
+        }else{
           console.log(results);
-      }
-      connection.end();
-      response.writeHead(302,{Location:'list.html'});
-      response.end();
-  });
+          res.redirect('/board');
+          response.end();
+        }
+        connection.end();
+    });
 });
-
 //------------------ V I E W -------------------//
 
 app.get('/list_view',(request,response)=>{
@@ -91,7 +90,7 @@ app.get('/list_view',(request,response)=>{
   connection.query(`update help set hit=hit+1 where idx='${idx}'`);
   
 })
-app.get('list_modify.html',(request,response)=>{
+app.get('/modify',(request,response)=>{
 
   let idx=request.query.idx;
 
