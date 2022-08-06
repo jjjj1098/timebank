@@ -58,6 +58,24 @@ ul,li{
     color:white;
 }*/
 
+.outerbox{
+    width:100%;
+    height:100%;
+    
+}
+
+.innerbox{
+    background-color: white;
+    width:1080px;
+    height:750px;
+    border: 2px solid rgb(202, 202, 202);
+    border-radius: 2px;
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%);
+    top:8%;
+
+}
 .main{
     width:1080px;
     height:80px;
@@ -105,7 +123,13 @@ ul,li{
     top: 710px;
     left: 54%;
 }
-
+.btnbox2{
+    width:600px;
+    height:50px;
+    position: absolute;
+    top: 710px;
+    left: 54%; 
+}
 .btnbox3{
     width:600px;
     height:50px;
@@ -258,4 +282,113 @@ td{
 .td5{
     width:100px;
     height:40px;
+}
+
+@media screen and (max-width: 800px) {
+    .outerbox{
+    width:80%;
+    height:80%;
+    }
+    .innerbox{
+    width:580px;
+    height:750px;
+    }
+    .main{
+    width:580px;
+    height:80px;
+    text-align: center;
+    font-size:50px;
+    color:#4949E8;
+    margin-top:30px;
+    }
+    .mainbox{
+    width:500px;
+    height:550px;
+    padding:20px 20px 20px 38px;
+    }
+    .mainbox1{
+    width:500px;
+    height:520px;
+    padding:20px;
+    }
+    .btn{
+    width:100px;
+    height:40px;
+    font-size: 10px;
+    align-items: center;
+    margin-left: 20px;
+    }
+    .btn:hover{    
+    color:#4949E8;
+    background-color: white;
+    border:2px solid #4949E8;
+    }
+
+    .btnbox{
+    width:300px;
+    height:40px;
+    position: absolute;
+    top: 710px;
+    left: 54%;
+    }
+    .btnbox2{
+        width:400px;
+        height:40px;
+        position: absolute;
+        top: 755px;
+        left: 54%; 
+    }
+
+    .btnbox3{
+    width:400px;
+    height:40px;
+    position: absolute;
+    top: 755px;
+    left: 35%;
+    }
+
+    .btn>a{
+    padding:10px;
+    }
+    .subbox,.wribox{
+    width:700px;
+    height:40px;
+    }
+    .subsubbox{
+    width:70px;
+    height:40px;
+    display: inline-block;
+    float:left;
+    text-align: center;
+    padding: 0 0 0 7px;
+    box-sizing: border-box;
+    }
+
+    .conbox{
+    width:500px;
+    /* height:400px; */
+    display: inline;
+    border:1px solid darkslategray;
+    text-align: left;
+    padding:10px 0 350px 7px;
+    box-sizing: border-box;
+    }
+
+    .sub,.tit,.wri,.age,.gen,.con{
+    font-size: 15px;
+    line-height: 35px;
+    text-align: center;
+    }
+
+    .txbox{
+    width:430px;
+    height:35px;
+    border:1px solid darkslategray;
+    padding:5px;
+    box-sizing: border-box;
+    }
+
+    input{
+    width:80%;
+    }
 }
