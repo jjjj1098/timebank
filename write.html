@@ -17,6 +17,9 @@
         if(title_tx.value==""){
             alert("제목을 입력해주세요");
             event.preventDefault();
+        } else if(address_tx.value==""){
+            alert("주소를 입력해주세요");
+            event.preventDefault();
         } else if(name_tx.value==""){
             alert("이름을 입력해주세요");
             event.preventDefault();
@@ -35,7 +38,11 @@
         if(window.event.keyCode ==13){
             alert("d");
         document.getElementsByName("content").innerHTML+="<br/>";
+        }
     }
+    function openMap(){
+        window.name = "addressForm";
+        oepnWin = window.open("test1.html", "mapForm", "width=570, height=350, resizable = no, scrollbars = no");
     }
     </script>
 </head>
@@ -53,6 +60,12 @@
                             </div>
                             <input id="title_tx" class ="txbox" type="text" name="title"> 
 
+                        </div>
+                        <div class="wribox">
+                            <div class="subsubbox">
+                            <span class="wri">주소 :</span>
+                                </div>
+                            <input id="address_tx" class = "txbox" type="text" name="address" type="ad_button" value="지도 열기" onclick="openMap()">                            <br/>
                         </div>
                         <div class="wribox">
                                 <div class="subsubbox">

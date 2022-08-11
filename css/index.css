@@ -184,7 +184,12 @@ ul,li{
     padding:5px;
     box-sizing: border-box;
 }
-
+.ad_button{
+    width:200px;
+    height:35px;
+    border:1px solid darkslategray;
+    color: #4949E8;
+}
 
 input{
     width:100%;
@@ -379,7 +384,6 @@ td{
     line-height: 35px;
     text-align: center;
     }
-
     .txbox{
     width:430px;
     height:35px;
@@ -387,7 +391,6 @@ td{
     padding:5px;
     box-sizing: border-box;
     }
-
     input{
     width:80%;
     }
