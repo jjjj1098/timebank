@@ -10,6 +10,12 @@
     #centerAddr {display:block;margin-top:2px;font-weight: normal;}
     .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
 </style>
+    <script type="text/javascript">
+    function setParentText(){
+        opener.document.getElementById("pInput").value = document.getElementById("cInput").value
+        }
+    </script>
+
 </head>
 <body>
 <div class="map_wrap">
@@ -20,6 +26,10 @@
     </div>
 </div>
 
+<input type="text" id="cInput"> <input type="button" value="전달하기" onclick="setParentText()">    <br><br>    
+<input type="button" value="창닫기" onclick="window.close()">
+
+
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8deae424850aec182cc73295702e0502&libraries=services"></script>
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -27,10 +37,7 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
         level: 1 // 지도의 확대 레벨
     };  
-   
-    
-//<input type="text" id="cInput"/>
-//<input type="button" value="창닫기" onclick="window.close()" a/>
+
 
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
