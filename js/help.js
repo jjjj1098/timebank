@@ -22,6 +22,7 @@ nunjucks.configure('views', {
 app.use(bodyParser.urlencoded({extended:false}));
 app.set('view engine', 'html');
 app.use(express.static('public'));
+app.use(bodyParser.json());
 
 let connection = mysql.createConnection({
   host: '127.0.0.1',
@@ -51,25 +52,24 @@ app.get('/list',(request,response)=>{ //methos가 get일 때, uri값이 list일 
 })
 
 app.post('/writedone',function(request,response){
-    var name=request.body.name;
-    var age=request.body.age;
-    var gender=request.body.gender;
-    var title=request.body.title;
-    var content=request.body.content;
+    const name = request.body.name;
+    const age = request.body.age;
+    const gender = request.body.gender;
+    const title = request.body.title;
+    const content = request.body.content;
+    console.log(request.body);
   
-    var sql = "INSERT INTO HELP (name, age, gender,title, content,today) VALUES (?,?,?,?,?,?)";
-    var params = [name, age, gender, title, content, now()];
-    connection.query(sql,params,function(err){
-        if(error){
-          console.log(error);
-        }else{
-          console.log(results);
-          res.redirect('/board');
-          response.end();
-        }
-        connection.end();
-    });
-});
+    const sql = "INSERT INTO HELP (name, age, gender,title, content) VALUES (?,?,?,?,?)";
+    const params = [name, age, gender, title, content];
+    connection.query(sql,params,function(err,result){
+          if(err){
+            console.log(err);
+          }else{
+            console.log(result);
+            response.end();
+          }
+      });
+  });
 //------------------ V I E W -------------------//
 
 app.get('/list_view',(request,response)=>{
