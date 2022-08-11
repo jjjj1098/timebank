@@ -29,8 +29,8 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     };  
    
     
-<input type="text" id="cInput"/>
-<input type="button" value="창닫기" onclick="window.close()" a/>
+//<input type="text" id="cInput"/>
+//<input type="button" value="창닫기" onclick="window.close()" a/>
 
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
@@ -64,7 +64,7 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
             // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
             infowindow.setContent(content);
             infowindow.open(map, marker);
-            if ()
+            
         }   
     });
 });
