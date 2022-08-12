@@ -5,7 +5,7 @@ const app = express();
 const port = process.env.SERVER_PORT || 3000; 
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
-const { response } = require('express');
+const {response} = require('express');
 
 nunjucks.configure('views', {
     express:app,
@@ -25,7 +25,8 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 
 let connection = mysql.createConnection({
-  host: '127.0.0.1',
+  //host: '127.0.0.1',
+  host: 'localhost',
   user:'root',
   password: '10301030',
   database: 'helplist',
@@ -39,7 +40,7 @@ app.get('/',(request,response)=>{
 });
 
 app.get('/list',(request,response)=>{ //methos가 get일 때, uri값이 list일 때 아래 함수를 실행
-  connection.query("select idx, name, age, gender, title, content, date_format(today, '%H:%m %m-%d-%Y ') as today, hit from board", (error,results)=>{
+  connection.query("select idx, name, age, gender, title, content, address, date_format(today, '%H:%m %m-%d-%Y ') as today, hit from board", (error,results)=>{
     if(error){
         console.log(error);
     }else{
@@ -51,24 +52,27 @@ app.get('/list',(request,response)=>{ //methos가 get일 때, uri값이 list일 
 })
 })
 
-app.post('/writedone',function(request,response){
+app.post('http://localhost:3000/writedone',function(request,response){
     const name = request.body.name;
     const age = request.body.age;
     const gender = request.body.gender;
     const title = request.body.title;
     const content = request.body.content;
+    const address = request.body.address;
     console.log(request.body);
-  
-    const sql = "INSERT INTO HELP (name, age, gender,title, content) VALUES (?,?,?,?,?)";
-    const params = [name, age, gender, title, content];
+
+    const sql = "INSERT INTO HELP (name, age, gender,title, content, address) VALUES (?,?,?,?,?,?)";
+    const params = [name, age, gender, title, content, address];
     connection.query(sql,params,function(err,result){
-          if(err){
-            console.log(err);
-          }else{
-            console.log(result);
-            response.end();
-          }
-      });
+         if(err){
+           console.log(err);
+        }else{
+         console.log(result);
+       }
+    });
+    response.write("<h1>글 작성이 완료되었습니다.</h1>");
+     response.write("<br/><br/><a href='view.html'>작성글 보러가기</a>"); 
+     response.end(); 
   });
 //------------------ V I E W -------------------//
 
@@ -114,7 +118,8 @@ app.post('/modifydone',(request,response)=>{
   let gender=request.body.gender;
   let title=request.body.title;
   let content=request.body.content;
-  let sql = "update help set name='${name}', age='${age}', gender='${gender}', title='${title}', content='${content}', today=now() where idx='${idx}'";
+  let address = request.body.address;
+  let sql = "update help set name='${name}', age='${age}', gender='${gender}', title='${title}', content='${content}', address='${address}', today=now() where idx='${idx}'";
 
   connection.query(sql,(error,results)=> {
       if(error){
