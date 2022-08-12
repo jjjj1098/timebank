@@ -9,15 +9,24 @@
     .hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
     #centerAddr {display:block;margin-top:2px;font-weight: normal;}
     .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-</style>
+    .child {position:absolute;left:10px;top:120;}
+    .child_2 {position:absolute;left: 10px;top:150;}
+    </style>
     <script type="text/javascript">
-    function setParentText(){
+    var detailAddr;
+    function sendParentText(){
         opener.document.getElementById("pInput").value = document.getElementById("cInput").value
         }
+    
+        function input_Text(){
+    document.getElementById("cInput").value = detailAddr;
+    }
     </script>
 
+    
 </head>
 <body>
+
 <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
     <div class="hAddr">
@@ -26,8 +35,10 @@
     </div>
 </div>
 
-<input type="text" id="cInput"> <input type="button" value="전달하기" onclick="setParentText()">    <br><br>    
-<input type="button" value="창닫기" onclick="window.close()">
+<div class="child">
+    <div><input id="cInput" type="text"><input type="button" onclick="input_Text()" value="확인"><input type ="button" value="전달하기" onclick="sendParentText()"><input type="button" value="창닫기" onclick="window.close()"> <br><br>
+    </div>
+</div>
 
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8deae424850aec182cc73295702e0502&libraries=services"></script>
@@ -56,13 +67,15 @@ searchAddrFromCoords(map.getCenter(), displayCenterInfo);
 kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
         if (status === kakao.maps.services.Status.OK) {
-            var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+            detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
             detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
             
             var content = '<div class="bAddr">' +
                             '<span class="title">법정동 주소정보</span>' + 
                             detailAddr + 
                         '</div>';
+
+            
 
             // 마커를 클릭한 위치에 표시합니다 
             marker.setPosition(mouseEvent.latLng);
@@ -103,8 +116,10 @@ function displayCenterInfo(result, status) {
                 break;
             }
         }
-    }    
+    }       
 }
 </script>
+
+
 </body>
 </html>
