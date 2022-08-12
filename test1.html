@@ -14,7 +14,7 @@
     </style>
     <script type="text/javascript">
     var detailAddr;
-    function sendParentText(){
+    function setParentText(){
         opener.document.getElementById("pInput").value = document.getElementById("cInput").value
         }
     
@@ -36,7 +36,7 @@
 </div>
 
 <div class="child">
-    <div><input id="cInput" type="text"><input type="button" onclick="input_Text()" value="확인"><input type ="button" value="전달하기" onclick="sendParentText()"><input type="button" value="창닫기" onclick="window.close()"> <br><br>
+    <div><input id="cInput" type="text"><input type="button" onclick="input_Text()" value="확인"><input type ="button" value="전달하기" onclick="setParentText()"><input type="button" value="창닫기" onclick="window.close()"> <br><br>
     </div>
 </div>
 
