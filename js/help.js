@@ -53,8 +53,6 @@ app.get('/list',(request,response)=>{ //methos가 get일 때, uri값이 list일 
 })
 
 app.post('http://localhost:3000/writedone',function(request,response){
-    response.write("<h1>글 작성이 완료되었습니다.</h1>");
-	  response.write("<br/><br/><a href='view.html'>작성글 보러가기</a>"); 
     const name = request.body.name;
     const age = request.body.age;
     const gender = request.body.gender;
@@ -70,11 +68,11 @@ app.post('http://localhost:3000/writedone',function(request,response){
            console.log(err);
         }else{
          console.log(result);
-         response.end(); 
        }
     });
-    
-	  
+    response.write("<h1>글 작성이 완료되었습니다.</h1>");
+	  response.write("<br/><br/><a href='view.html'>작성글 보러가기</a>"); 
+	  response.end(); 
   });
 //------------------ V I E W -------------------//
 
