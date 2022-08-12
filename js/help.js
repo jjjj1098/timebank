@@ -6,19 +6,29 @@ const port = process.env.SERVER_PORT || 3000;
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const {response} = require('express');
+const response = require('express');
+// const router = express.Router();
 
 nunjucks.configure('views', {
-    express:app,
+    express:app
 });
 
+// app.use("/",function(req,res,next) {
+// 	res.writeHead("200", {"Content-Type":"text/html;charset=utf-8"});
+// 	res.end('http://localhost:3000/writedone'); 
+// 	//res.write로 길게 안쓰고 res.end에 간결하게 보내줌 			
+// });
+
+// app.set("port",process.env.PORT || 3000);
 //var http = require('http');
 //var server = http.createServer(app).listen(80);
 //console.log("server is running...")
 
 //mysql 접속 정보
 //var mysql = require('mysql');
-//var request = require('request');
+const request = require('request');
 
+// app.use('/', router)
 app.use(bodyParser.urlencoded({extended:false}));
 app.set('view engine', 'html');
 app.use(express.static('public'));
@@ -52,7 +62,11 @@ app.get('/list',(request,response)=>{ //methos가 get일 때, uri값이 list일 
 })
 })
 
+//<<<<<<< HEAD
 app.post('http://localhost:3000/writedone',function(request,response){
+//=======
+app.post('https://yatimebank.netlify.app/writedone',function(request,response){
+//>>>>>>> 222f32d79851fb0ca989b846cc927aa8053bb8f1
     const name = request.body.name;
     const age = request.body.age;
     const gender = request.body.gender;
@@ -67,6 +81,7 @@ app.post('http://localhost:3000/writedone',function(request,response){
          if(err){
            console.log(err);
         }else{
+//<<<<<<< HEAD
          console.log(result);
        }
     });
@@ -74,6 +89,12 @@ app.post('http://localhost:3000/writedone',function(request,response){
      response.write("<br/><br/><a href='view.html'>작성글 보러가기</a>"); 
      response.end(); 
   });
+//=======
+          console.log(result);
+          response.end(); 
+});
+      
+//>>>>>>> 222f32d79851fb0ca989b846cc927aa8053bb8f1
 //------------------ V I E W -------------------//
 
 app.get('/list_view',(request,response)=>{

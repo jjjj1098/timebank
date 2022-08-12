@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css\index.css">
-    <script src="js/help.js"></script>
     <script type="text/javascript">
         function val (){
         var title_tx = document.getElementById("title_tx");
@@ -44,7 +43,11 @@
         }
         function openMap(){
         window.name = "addressForm";
+
         oepnWin = window.open("helpmap.html", "mapForm", "width=570, height=350, resizable = no, scrollbars = no");
+
+        oepnWin = window.open("test1.html", "mapForm", "width=570, height=350, resizable = no, scrollbars = no");
+
         }
     </script>
 </head>
@@ -53,7 +56,9 @@
         <div class="outerbox" >
             <div class="innerbox">
                 <h2 class="main"> 도움 요청하기</h2>
+
                 <form method="post"  action="http://localhost:3000/writedone">
+                <form method="post"  action="https://yatimebank.netlify.app/writedone">
                     <button type=submit name = "name" disabled onclick="enter()"; style="display:none;"></button> 
                     <div class="mainbox">
                         <div class="subbox">
@@ -68,6 +73,7 @@
                             <span class="wri">주소 :</span>
                                 </div>
                             <input id="pInput" class = "txbox" name="address" type="ad_button" value="지도 열기" onclick="openMap()">                            <br/>
+                            <input id="address_tx" class = "txbox" name="address" type="ad_button" value="지도 열기" onclick="openMap()">                            <br/>
                         </div>
                         <!--전달할 값 : <input type="text" id="pInput">-->
                         <div class="wribox">

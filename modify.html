@@ -8,12 +8,18 @@
     <link rel="stylesheet" href="css\index.css">
     <script type="text/javascript">
         function val (){
-            let subject_tx = document.getElementById("subject_tx");
-            let writer_tx = document.getElementById("writer_tx");
-            let content_tx = document.getElementById("content_tx");
+            var title_tx = document.getElementById("title_tx");
+            var address_tx = document.getElementById("address_tx");
+            var name_tx = document.getElementById("name_tx");
+            var age_tx = document.getElementById("age_tx");
+            var gender_tx = document.getElementById("gender_tx");
+            var content_tx = document.getElementById("content_tx");
 
             if(title_tx.value==""){
                 alert("제목을 입력해주세요");
+                event.preventDefault();
+            } else if(address_tx.value==""){
+                alert("주소를 입력해주세요");
                 event.preventDefault();
             } else if(name_tx.value==""){
                 alert("이름을 입력해주세요");
@@ -50,7 +56,12 @@
                                 <span class="tit">제목 :</span>
                             </div>
                             <input id="stitle_tx" class ="txbox" type="text" name="title" value="{{modify_db.title}}"> 
-
+                        </div>
+                        <div class="wribox">
+                            <div class="subsubbox">
+                            <span class="wri">주소 :</span>
+                                </div>
+                            <input id="address_tx" class = "txbox" name="address" type="text" value="{{modify_db.address}}">                            <br/>
                         </div>
                         <div class="wribox">
                                 <div class="subsubbox">
