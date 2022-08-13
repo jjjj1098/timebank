@@ -12,7 +12,8 @@ const bodyParser = require('body-parser');
 var path = require('path');
 
 nunjucks.configure('views', {
-    express:app
+    express:app,
+    watch: true,
 });
 
 var http = require('http');
@@ -25,10 +26,11 @@ var http = require('http');
 
 // app.use('/', router)
 app.use(bodyParser.urlencoded({extended:false}));
+app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'html');
 app.use(express.static('public'));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(`${__dirname}/public`));
 
 let connection = mysql.createConnection({
   //host: '127.0.0.1',
@@ -46,14 +48,15 @@ app.get('/',function(request,response){
   response.render('index.html');
 })
 
-app.get('/list',function(request,response){ //methos가 get일 때, uri값이 list일 때 아래 함수를 실행
-  connection.query("select idx, name, age, gender, title, content, address, date_format(today, '%H:%m %m-%d-%Y ') as today, hit from board", (error,results)=>{
+app.get('/board',function(request,response){ //methos가 get일 때, uri값이 list일 때 아래 함수를 실행
+//   connection.query("select idx, name, age, gender, title, content, address, date_format(today, '%H:%m %m-%d-%Y ') as today, hit from board", (error,results)=>{
+    connection.query("select *, @idx:=@idx+1 as idx2, date_format(today, '%H:%m %m-%d-%Y ') as today, hit from board, (select @idx:=0)A", (error,results)=>{
     if(error){
         console.log(error);
     }else{
         console.log(results);
-        response.render('list.html',{
-            help_db:results,
+        response.render('board.html',{
+            help_db:results
         })
     }
 })
@@ -75,11 +78,17 @@ app.post('/writedone',function(request,response){
            console.log(error);
         }else{
          //console.log(result);
+         //response.end();
+         response.writeHead(302, {location:'http://127.0.0.1:3000/view.html'});
          response.end();
        }
     })
-    return request.query.path ? response.redirect(request.query.path) : response.redirect('/view.html');  
-})     
+    //console.log(window.test);
+    // if (window.location='http://localhost:3000/writedone'){
+    // window.location.href='http://localhost:3000/view';
+    // } 
+    //return response.redirect("/view"); 
+});
       
 //------------------ V I E W -------------------//
 

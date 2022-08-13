@@ -8,5 +8,8 @@
     "nunjucks": "^3.2.3",
     "require": "^2.4.20",
     "response": "^0.18.0"
+  },
+  "devDependencies": {
+    "chokidar": "^3.5.3"
   }
 }
