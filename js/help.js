@@ -59,7 +59,7 @@ app.get('/list',function(request,response){ //methos가 get일 때, uri값이 li
 })
 })
 
-app.post('http://localhost:3000/writedone',function(request,response){
+app.post('/writedone',function(request,response){
     const name = request.body.name;
     const age = request.body.age;
     const gender = request.body.gender;
@@ -75,10 +75,10 @@ app.post('http://localhost:3000/writedone',function(request,response){
            console.log(error);
         }else{
          //console.log(result);
-         response.end(); 
+         response.end();
        }
     })
-    response.redirect('http://localhost:3000/view.html'); 
+    return request.query.path ? response.redirect(request.query.path) : response.redirect('/view.html');  
 })     
       
 //------------------ V I E W -------------------//
