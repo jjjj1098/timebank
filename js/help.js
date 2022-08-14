@@ -78,7 +78,6 @@ app.post('/writedone',function(request,response){
            console.log(error);
         }else{
          //console.log(result);
-         //response.end();
          response.writeHead(302, {location:'http://127.0.0.1:3000/view.html'});
          response.end();
        }
