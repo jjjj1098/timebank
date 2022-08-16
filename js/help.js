@@ -17,6 +17,7 @@ nunjucks.configure('views', {
 });
 
 var http = require('http');
+var board = require('public/board.html');
 //var server = http.createServer(app).listen(80);
 //console.log("server is running...")
 
@@ -25,7 +26,7 @@ var http = require('http');
 //const request = require('request');
 
 // app.use('/', router)
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({extended:true}));
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'html');
 app.use(express.static('public'));
@@ -34,11 +35,11 @@ app.use(express.static(`${__dirname}/public`));
 
 let connection = mysql.createConnection({
   //host: '127.0.0.1',
-  host: 'localhost',
+  host: '127.0.0.1',
   user:'root',
   port:'3306',
-  password: '10301030',
-  database: 'helplist',
+  password: 'wlgus4026',
+  database: 'HelpList',
 });
 
 //mysql 접속하기
@@ -78,8 +79,10 @@ app.post('/writedone',function(request,response){
            console.log(error);
         }else{
          //console.log(result);
-         response.writeHead(302, {location:'http://127.0.0.1:3000/view.html'});
-         response.end();
+         //response.writeHead(302, {location:'view.html'});
+         //response.redirect("/view");
+         window.location.href='http://127.0.0.1:3001/view.html';
+         response.end(); 
        }
     })
     //console.log(window.test);

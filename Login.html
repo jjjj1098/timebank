@@ -70,7 +70,14 @@
                         url: '/v2/user/me',
                         success: (res) => {
                             const kakao_account = res.kakao_account;
-                            console.log(kakao_account)
+                            console.log(kakao_account)   
+                            return (
+                              <div>
+                                <h2>user_id</h2>
+                                <h2>{nickName}</h2>
+                                <img src={profileImage}></img>
+                              </div>
+                            );
                             loginchek = True
                         }
                     });

@@ -1,6 +1,9 @@
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -16,10 +19,16 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     
-    
+
+        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+      
+
     </head>
     <body id="page-top">
+
         <!-- Navigation-->
+
+        
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand" href="#page-top">TIME BANK</a>
@@ -32,16 +41,93 @@
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">List</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="map.html">MAP</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">HELP</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="Login.html">Login</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="Login.html">Logout</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="helpmap.html">helpmap</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="test.html">test</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"  href="javascript:mypage()">MYPAGE</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id = "nicktest" href="javascript:loginWithKakao()">login</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="javascript:kakaoLogout()">logout</a></li>
                         
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id ="timemoney" href="javascript:kakaoLogout()">시간화폐를 적립하세요</a></li>
+                      
+                        <!--<a href="javascript:ss()">nickname</a>-->
 
                     </ul>
                 </div>
             </div>
         </nav>
+        <script>
+            var time = 30;
+        </script>
+        <script type="text/javascript">
+            
+            // 2. 카카오 초기화
+            Kakao.init('8deae424850aec182cc73295702e0502');
+            console.log( Kakao.isInitialized() ); // 초기화 판단여부
+    
+            // 3. 데모버전으로 들어가서 카카오로그인 코드를 확인.
+            function loginWithKakao() {
+                Kakao.Auth.login({
+                    success: function (authObj) {
+                        console.log(authObj); // access토큰 값
+                        Kakao.Auth.setAccessToken(authObj.access_token); // access토큰값 저장
+    
+                        getInfo();
+                        timechange();
+                        
+                    },
+                    fail: function (err) {
+                        console.log(err);
+                    }
+                });
+            }
+            function timechange(){
+                const subst = document.getElementById('timemoney');
+                subst.innerText = "시간화폐 : "+time
+
+            }
+            // 4. 엑세스 토큰을 발급받고, 아래 함수를 호출시켜서 사용자 정보를 받아옴.
+            function getInfo() {
+                Kakao.API.request({
+                    url: '/v2/user/me',
+                    success: function (res) {
+                        console.log(res);
+                        // 이메일, 성별, 닉네임, 프로필이미지
+                        var email = res.kakao_account.email;
+                        var gender = res.kakao_account.gender;
+                        var nickname = res.kakao_account.profile.nickname;
+                        var profile_image = res.kakao_account.profile.thumbnail_image_url;
+                        var age = res.kakao_account.age_range;
+                        const subs = document.getElementById('nicktest');
+                        
+                        
+                        console.log(email, gender, nickname, profile_image);
+                        subs.innerText = nickname+"님의 마이페이지"
+                        //document.write(nickname)
+
+                        alert('나의 정보 확인하기\n\n이름 : '+nickname+'\nemail : '+email+'\n성별 : '+gender+'\n나이 : '+age+'\n시간화폐 :'+time);
+                    },
+                    fail: function (error) {
+                        alert('카카오 로그인에 실패했습니다. 관리자에게 문의하세요.' + JSON.stringify(error));
+                    }
+                });
+            }
+            
+            // 5. 로그아웃 기능 - 카카오 서버에 접속하는 엑세스 토큰을 만료, 사용자 어플리케이션의 로그아웃은 따로 진행.
+            function kakaoLogout() {
+                
+
+                if (!Kakao.Auth.getAccessToken()) {
+                console.log('Not logged in.');
+                return;
+                }
+                Kakao.Auth.logout(function(response) {
+                    alert(response +' logout');
+                    window.location.href='/'
+                    loginchek = False
+                    if(subs.innerText == nickname) {
+                        subs.innerText = "login";
+                    } else subs.innerText =nickname;
+                });
+            }
+        </script>
 
     
         <!-- Masthead-->
@@ -66,7 +152,7 @@
         <section class="page-section portfolio" id="portfolio">
             <div class="container">
                 <!-- Portfolio Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">List</h2>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">MYPAGE</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
@@ -76,50 +162,7 @@
                 <!-- Portfolio Grid Items-->
                 <div class="row justify-content-center">
                     <!-- Portfolio Item 1-->
-                    <div class="col-md-6 col-lg-4 mb-5">
-                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/portfolio/cabin.png" alt="..." />
-                        </div>
-                    </div>
-                    <!-- Portfolio Item 2-->
-                    <div class="col-md-6 col-lg-4 mb-5">
-                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal2">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/portfolio/cake.png" alt="..." />
-                        </div>
-                    </div>
-                    <!-- Portfolio Item 3-->
-                    <div class="col-md-6 col-lg-4 mb-5">
-                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal3">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/portfolio/circus.png" alt="..." />
-                        </div>
-                    </div>
-                    <!-- Portfolio Item 4-->
-                    <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
-                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal4">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/portfolio/game.png" alt="..." />
-                        </div>
-                    </div>
-                    <!-- Portfolio Item 5-->
-                    <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
-                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal5">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/portfolio/safe.png" alt="..." />
-                        </div>
-                    </div>
+                    <script></script>
                     <!-- Portfolio Item 6-->
                     <div class="col-md-6 col-lg-4">
                         <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal6">

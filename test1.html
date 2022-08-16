@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Kakao Login</title>
+    </head>
+    <body>
+        <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=816649895856a11bedecca993678e303&redirect_uri=http://127.0.0.1:3000/test1.html">
+            요청 URI
+        </a>
+        <script>
+           
+            <p>{property_keys.API.email}</p>
+        //<h1>{age_range ? age_range : "" }</h1>
+
+
+        </script>
+         <p>{property_keys.}</p>
+        <img src={profile_image_url} alt="profile_img" title="img_title" />
+        
+    
+        <h2>로그아웃</h2>
+        <a href="https://kauth.kakao.com/oauth/logout?client_id=816649895856a11bedecca993678e303&logout_redirect_uri=http://127.0.0.1:3000/index.html">로그아웃</a>
+    
+
+        <script>
+            Kakao.API.request({
+                url: '/v2/user/me',
+                data: {
+                    property_keys: ["kakao_account.email","kakao_account.gender"]
+                },
+                success: function(response) {
+                    console.log(response);
+                },
+                fail: function(error) {
+                    console.log(error);
+                }
+            });
+
+            Kakao.API.request({
+                url: '/v1/user/update_profile',
+                data: {
+                    properties: {
+                        '${CUSTOM_PROPERTY_KEY}': '${CUSTOM_PROPERTY_VALUE}'
+                    },
+                },
+                success: function(response) {
+                    console.log(response);
+                },
+                fail: function(error) {
+                    console.log(error);
+                }
+            });
+        </script>
+    </body>
+</html>
